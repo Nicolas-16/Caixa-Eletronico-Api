@@ -1,0 +1,17 @@
+C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\bin\Debug\net10.0\ProjetoBancario.Servicos.deps.json
+C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\bin\Debug\net10.0\ProjetoBancario.Servicos.dll
+C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\bin\Debug\net10.0\ProjetoBancario.Servicos.pdb
+C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\bin\Debug\net10.0\ProjetoBancario.Dados.dll
+C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\bin\Debug\net10.0\ProjetoBancario.Dominio.dll
+C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\bin\Debug\net10.0\ProjetoBancario.Dados.pdb
+C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\bin\Debug\net10.0\ProjetoBancario.Dominio.pdb
+C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\obj\Debug\net10.0\ProjetoBancario.Servicos.csproj.AssemblyReference.cache
+C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\obj\Debug\net10.0\ProjetoBancario.Servicos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\obj\Debug\net10.0\ProjetoBancario.Servicos.AssemblyInfoInputs.cache
+C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\obj\Debug\net10.0\ProjetoBancario.Servicos.AssemblyInfo.cs
+C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\obj\Debug\net10.0\ProjetoBancario.Servicos.csproj.CoreCompileInputs.cache
+C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\obj\Debug\net10.0\ProjetoB.AB8C7CFA.Up2Date
+C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\obj\Debug\net10.0\ProjetoBancario.Servicos.dll
+C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\obj\Debug\net10.0\refint\ProjetoBancario.Servicos.dll
+C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\obj\Debug\net10.0\ProjetoBancario.Servicos.pdb
+C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\obj\Debug\net10.0\ref\ProjetoBancario.Servicos.dll

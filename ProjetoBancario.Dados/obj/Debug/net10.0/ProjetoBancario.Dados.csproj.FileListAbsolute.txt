@@ -1,0 +1,15 @@
+C:\Workspace\PrimeiraApi\ProjetoBancario.Dados\bin\Debug\net10.0\ProjetoBancario.Dados.deps.json
+C:\Workspace\PrimeiraApi\ProjetoBancario.Dados\bin\Debug\net10.0\ProjetoBancario.Dados.dll
+C:\Workspace\PrimeiraApi\ProjetoBancario.Dados\bin\Debug\net10.0\ProjetoBancario.Dados.pdb
+C:\Workspace\PrimeiraApi\ProjetoBancario.Dados\bin\Debug\net10.0\ProjetoBancario.Dominio.dll
+C:\Workspace\PrimeiraApi\ProjetoBancario.Dados\bin\Debug\net10.0\ProjetoBancario.Dominio.pdb
+C:\Workspace\PrimeiraApi\ProjetoBancario.Dados\obj\Debug\net10.0\ProjetoBancario.Dados.csproj.AssemblyReference.cache
+C:\Workspace\PrimeiraApi\ProjetoBancario.Dados\obj\Debug\net10.0\ProjetoBancario.Dados.GeneratedMSBuildEditorConfig.editorconfig
+C:\Workspace\PrimeiraApi\ProjetoBancario.Dados\obj\Debug\net10.0\ProjetoBancario.Dados.AssemblyInfoInputs.cache
+C:\Workspace\PrimeiraApi\ProjetoBancario.Dados\obj\Debug\net10.0\ProjetoBancario.Dados.AssemblyInfo.cs
+C:\Workspace\PrimeiraApi\ProjetoBancario.Dados\obj\Debug\net10.0\ProjetoBancario.Dados.csproj.CoreCompileInputs.cache
+C:\Workspace\PrimeiraApi\ProjetoBancario.Dados\obj\Debug\net10.0\ProjetoB.55C92122.Up2Date
+C:\Workspace\PrimeiraApi\ProjetoBancario.Dados\obj\Debug\net10.0\ProjetoBancario.Dados.dll
+C:\Workspace\PrimeiraApi\ProjetoBancario.Dados\obj\Debug\net10.0\refint\ProjetoBancario.Dados.dll
+C:\Workspace\PrimeiraApi\ProjetoBancario.Dados\obj\Debug\net10.0\ProjetoBancario.Dados.pdb
+C:\Workspace\PrimeiraApi\ProjetoBancario.Dados\obj\Debug\net10.0\ref\ProjetoBancario.Dados.dll
