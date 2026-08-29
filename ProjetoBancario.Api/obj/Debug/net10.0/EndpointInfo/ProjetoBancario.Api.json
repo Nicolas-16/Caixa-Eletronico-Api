@@ -1,0 +1,16 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "ProjetoBancario.Api | v1",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://localhost:7141"
+    },
+    {
+      "url": "http://localhost:5122"
+    }
+  ],
+  "paths": { }
+}

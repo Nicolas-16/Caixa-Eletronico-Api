@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "WvB9+1aQCAY=",
+  "dgSpecHash": "d6Uj2BoVP2U=",
   "success": true,
   "projectFilePath": "C:\\Workspace\\PrimeiraApi\\ProjetoBancario.Api\\ProjetoBancario.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nicolas\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.11\\microsoft.aspnetcore.openapi.10.0.11.nupkg.sha512",
-    "C:\\Users\\Nicolas\\.nuget\\packages\\microsoft.openapi\\2.7.5\\microsoft.openapi.2.7.5.nupkg.sha512"
+    "C:\\Users\\Nicolas\\.nuget\\packages\\microsoft.openapi\\2.7.5\\microsoft.openapi.2.7.5.nupkg.sha512",
+    "C:\\Users\\Nicolas\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\10.2.3\\swashbuckle.aspnetcore.swaggerui.10.2.3.nupkg.sha512"
   ],
   "logs": []
 }
