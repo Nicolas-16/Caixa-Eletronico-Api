@@ -46,8 +46,7 @@
               "RelativeToolTip": "ProjetoBancario.Api\\Controllers\\UsuariosController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-28T01:54:35.538Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-28T01:54:35.538Z"
             },
             {
               "$type": "Document",
@@ -71,8 +70,7 @@
               "RelativeToolTip": "ProjetoBancario.Api\\DTOs\\CriarContaRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-28T01:46:59.204Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-28T01:46:59.204Z"
             },
             {
               "$type": "Document",
@@ -97,8 +95,7 @@
               "RelativeToolTip": "ProjetoBancario.Api\\Program.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-20T21:52:50.947Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-20T21:52:50.947Z"
             }
           ]
         }
