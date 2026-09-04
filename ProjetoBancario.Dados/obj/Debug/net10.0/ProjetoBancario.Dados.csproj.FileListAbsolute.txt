@@ -13,3 +13,4 @@ C:\Workspace\PrimeiraApi\ProjetoBancario.Dados\obj\Debug\net10.0\ProjetoBancario
 C:\Workspace\PrimeiraApi\ProjetoBancario.Dados\obj\Debug\net10.0\refint\ProjetoBancario.Dados.dll
 C:\Workspace\PrimeiraApi\ProjetoBancario.Dados\obj\Debug\net10.0\ProjetoBancario.Dados.pdb
 C:\Workspace\PrimeiraApi\ProjetoBancario.Dados\obj\Debug\net10.0\ref\ProjetoBancario.Dados.dll
+C:\Workspace\PrimeiraApi\ProjetoBancario.Dados\obj\Debug\net10.0\ProjetoBancario.Dados.sourcelink.json

@@ -3,5 +3,6 @@
   <Project Path="ProjetoBancario.ConsoleApp/ProjetoBancario.ConsoleApp.csproj" Id="163b81ea-31af-425d-b1f7-57b989e498a3" />
   <Project Path="ProjetoBancario.Dados/ProjetoBancario.Dados.csproj" Id="551aa9b4-3ef2-42e8-9dc0-005a5ac61ef8" />
   <Project Path="ProjetoBancario.Dominio/ProjetoBancario.Dominio.csproj" Id="2366c4ae-1d3e-4502-918e-5f77ecde5a24" />
+  <Project Path="ProjetoBancario.DTOs/ProjetoBancario.DTOs.csproj" Id="8605b7a6-878f-4270-8d83-3faac2b20184" />
   <Project Path="ProjetoBancario.Servicos/ProjetoBancario.Servicos.csproj" Id="819c2a14-c501-47c7-ab39-cbfef4cdfeb3" />
 </Solution>

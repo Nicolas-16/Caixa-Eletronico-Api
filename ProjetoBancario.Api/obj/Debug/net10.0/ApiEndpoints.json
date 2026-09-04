@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "ContainingType": "ProjetoBancario.Api.UsuariosController",
+    "Method": "CriarConta",
+    "RelativePath": "api/Usuarios/criar-conta",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "ProjetoBancario.DTOs.CriarContaRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

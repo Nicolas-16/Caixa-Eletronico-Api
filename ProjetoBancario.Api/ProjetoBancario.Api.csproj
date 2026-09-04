@@ -11,4 +11,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ProjetoBancario.Dados\ProjetoBancario.Dados.csproj" />
+    <ProjectReference Include="..\ProjetoBancario.DTOs\ProjetoBancario.DTOs.csproj" />
+    <ProjectReference Include="..\ProjetoBancario.Servicos\ProjetoBancario.Servicos.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -9,7 +9,7 @@ namespace ProjetoBancario
 {
     public class ContaRepository
     {
-        public void Inserir(Conta conta)
+        public static void Inserir(Conta conta)
         {
             using var connection = DataBase.GetConnection();
             connection.Open();
@@ -31,7 +31,14 @@ namespace ProjetoBancario
             string sql = @"SELECT * FROM Contas WHERE NumeroConta == @NumeroConta;";
             return connection.QueryFirstOrDefault<Conta>(sql, new { NumeroConta = numeroConta });
         }
+        public static Conta ValidarConta(string nome, string cpf)
+        {
+            using var connection = DataBase.GetConnection();
+            connection.Open();
 
+            string sql = @"SELECT * FROM Contas WHERE Nome == @Nome OR Cpf == @Cpf";
+            return connection.QueryFirstOrDefault<Conta>(sql, new { @Nome = nome, @Cpf = cpf});
+        }
         public static void CadastrarConta(Conta conta)
         {
             using var connection = DataBase.GetConnection();

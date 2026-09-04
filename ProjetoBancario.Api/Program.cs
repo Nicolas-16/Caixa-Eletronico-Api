@@ -1,5 +1,9 @@
+using ProjetoBancario;
+
 var builder = WebApplication.CreateBuilder(args);
 
+//inicializando o banco de dados sqlite
+DataBaseInitializer.Initialize();
 // Add services to the container.
 
 builder.Services.AddControllers();
