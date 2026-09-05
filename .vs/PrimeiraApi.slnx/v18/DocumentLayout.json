@@ -3,24 +3,8 @@
   "WorkspaceRootPath": "C:\\Workspace\\PrimeiraApi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D31E078E-12E0-4DA1-3EE7-88AB78B9B086}|ProjetoBancario.Api\\ProjetoBancario.Api.csproj|c:\\workspace\\primeiraapi\\projetobancario.api\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D31E078E-12E0-4DA1-3EE7-88AB78B9B086}|ProjetoBancario.Api\\ProjetoBancario.Api.csproj|solutionrelative:projetobancario.api\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D31E078E-12E0-4DA1-3EE7-88AB78B9B086}|ProjetoBancario.Api\\ProjetoBancario.Api.csproj|c:\\workspace\\primeiraapi\\projetobancario.api\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D31E078E-12E0-4DA1-3EE7-88AB78B9B086}|ProjetoBancario.Api\\ProjetoBancario.Api.csproj|solutionrelative:projetobancario.api\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D31E078E-12E0-4DA1-3EE7-88AB78B9B086}|ProjetoBancario.Api\\ProjetoBancario.Api.csproj|c:\\workspace\\primeiraapi\\projetobancario.api\\dtos\\criarcontarequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D31E078E-12E0-4DA1-3EE7-88AB78B9B086}|ProjetoBancario.Api\\ProjetoBancario.Api.csproj|solutionrelative:projetobancario.api\\dtos\\criarcontarequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D31E078E-12E0-4DA1-3EE7-88AB78B9B086}|ProjetoBancario.Api\\ProjetoBancario.Api.csproj|c:\\workspace\\primeiraapi\\projetobancario.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D31E078E-12E0-4DA1-3EE7-88AB78B9B086}|ProjetoBancario.Api\\ProjetoBancario.Api.csproj|solutionrelative:projetobancario.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D31E078E-12E0-4DA1-3EE7-88AB78B9B086}|ProjetoBancario.Api\\ProjetoBancario.Api.csproj|c:\\workspace\\primeiraapi\\projetobancario.api\\dtos\\criarcontaresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D31E078E-12E0-4DA1-3EE7-88AB78B9B086}|ProjetoBancario.Api\\ProjetoBancario.Api.csproj|solutionrelative:projetobancario.api\\dtos\\criarcontaresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,72 +14,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UsuariosController.cs",
-              "DocumentMoniker": "C:\\Workspace\\PrimeiraApi\\ProjetoBancario.Api\\Controllers\\UsuariosController.cs",
-              "RelativeDocumentMoniker": "ProjetoBancario.Api\\Controllers\\UsuariosController.cs",
-              "ToolTip": "C:\\Workspace\\PrimeiraApi\\ProjetoBancario.Api\\Controllers\\UsuariosController.cs",
-              "RelativeToolTip": "ProjetoBancario.Api\\Controllers\\UsuariosController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-28T01:54:35.538Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CriarContaResponse.cs",
-              "DocumentMoniker": "C:\\Workspace\\PrimeiraApi\\ProjetoBancario.Api\\DTOs\\CriarContaResponse.cs",
-              "RelativeDocumentMoniker": "ProjetoBancario.Api\\DTOs\\CriarContaResponse.cs",
-              "ToolTip": "C:\\Workspace\\PrimeiraApi\\ProjetoBancario.Api\\DTOs\\CriarContaResponse.cs",
-              "RelativeToolTip": "ProjetoBancario.Api\\DTOs\\CriarContaResponse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-28T01:47:38.976Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CriarContaRequest.cs",
-              "DocumentMoniker": "C:\\Workspace\\PrimeiraApi\\ProjetoBancario.Api\\DTOs\\CriarContaRequest.cs",
-              "RelativeDocumentMoniker": "ProjetoBancario.Api\\DTOs\\CriarContaRequest.cs",
-              "ToolTip": "C:\\Workspace\\PrimeiraApi\\ProjetoBancario.Api\\DTOs\\CriarContaRequest.cs",
-              "RelativeToolTip": "ProjetoBancario.Api\\DTOs\\CriarContaRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-28T01:46:59.204Z"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Usuario.cs",
-              "DocumentMoniker": "C:\\Workspace\\PrimeiraApi\\ProjetoBancario.Api\\Models\\Usuario.cs",
-              "RelativeDocumentMoniker": "ProjetoBancario.Api\\Models\\Usuario.cs",
-              "ToolTip": "C:\\Workspace\\PrimeiraApi\\ProjetoBancario.Api\\Models\\Usuario.cs",
-              "RelativeToolTip": "ProjetoBancario.Api\\Models\\Usuario.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-28T01:41:07.277Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Workspace\\PrimeiraApi\\ProjetoBancario.Api\\Program.cs",
               "RelativeDocumentMoniker": "ProjetoBancario.Api\\Program.cs",
               "ToolTip": "C:\\Workspace\\PrimeiraApi\\ProjetoBancario.Api\\Program.cs",
               "RelativeToolTip": "ProjetoBancario.Api\\Program.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-20T21:52:50.947Z"
+              "WhenOpened": "2026-09-04T02:06:10.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             }
           ]
         }

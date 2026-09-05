@@ -10,3 +10,4 @@ C:\Workspace\PrimeiraApi\ProjetoBancario.Dominio\obj\Debug\net10.0\ProjetoBancar
 C:\Workspace\PrimeiraApi\ProjetoBancario.Dominio\obj\Debug\net10.0\refint\ProjetoBancario.Dominio.dll
 C:\Workspace\PrimeiraApi\ProjetoBancario.Dominio\obj\Debug\net10.0\ProjetoBancario.Dominio.pdb
 C:\Workspace\PrimeiraApi\ProjetoBancario.Dominio\obj\Debug\net10.0\ref\ProjetoBancario.Dominio.dll
+C:\Workspace\PrimeiraApi\ProjetoBancario.Dominio\obj\Debug\net10.0\ProjetoBancario.Dominio.sourcelink.json

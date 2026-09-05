@@ -208,6 +208,16 @@
         "runtime": {
           "bin/placeholder/ProjetoBancario.Dominio.dll": {}
         }
+      },
+      "ProjetoBancario.DTOs/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/ProjetoBancario.DTOs.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ProjetoBancario.DTOs.dll": {}
+        }
       }
     }
   },
@@ -360,10 +370,16 @@
       "type": "project",
       "path": "../ProjetoBancario.Dominio/ProjetoBancario.Dominio.csproj",
       "msbuildProject": "../ProjetoBancario.Dominio/ProjetoBancario.Dominio.csproj"
+    },
+    "ProjetoBancario.DTOs/1.0.0": {
+      "type": "project",
+      "path": "../ProjetoBancario.DTOs/ProjetoBancario.DTOs.csproj",
+      "msbuildProject": "../ProjetoBancario.DTOs/ProjetoBancario.DTOs.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
+      "ProjetoBancario.DTOs >= 1.0.0",
       "ProjetoBancario.Dados >= 1.0.0",
       "ProjetoBancario.Dominio >= 1.0.0"
     ]
@@ -407,6 +423,9 @@
             },
             "C:\\Workspace\\PrimeiraApi\\ProjetoBancario.Dominio\\ProjetoBancario.Dominio.csproj": {
               "projectPath": "C:\\Workspace\\PrimeiraApi\\ProjetoBancario.Dominio\\ProjetoBancario.Dominio.csproj"
+            },
+            "C:\\Workspace\\PrimeiraApi\\ProjetoBancario.DTOs\\ProjetoBancario.DTOs.csproj": {
+              "projectPath": "C:\\Workspace\\PrimeiraApi\\ProjetoBancario.DTOs\\ProjetoBancario.DTOs.csproj"
             }
           }
         }

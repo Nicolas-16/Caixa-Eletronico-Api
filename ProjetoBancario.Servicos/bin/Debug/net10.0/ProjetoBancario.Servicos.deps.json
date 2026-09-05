@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v10.0": {
       "ProjetoBancario.Servicos/1.0.0": {
         "dependencies": {
+          "ProjetoBancario.DTOs": "1.0.0",
           "ProjetoBancario.Dados": "1.0.0",
           "ProjetoBancario.Dominio": "1.0.0"
         },
@@ -209,6 +210,14 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "ProjetoBancario.DTOs/1.0.0": {
+        "runtime": {
+          "ProjetoBancario.DTOs.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -273,6 +282,11 @@
       "sha512": ""
     },
     "ProjetoBancario.Dominio/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ProjetoBancario.DTOs/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

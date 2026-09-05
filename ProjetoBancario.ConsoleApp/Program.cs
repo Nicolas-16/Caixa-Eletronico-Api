@@ -39,7 +39,7 @@ namespace ProjetoBancario
                         }
                         break;
                     case "2":
-                        ContaService.CriarConta();
+                        //ContaService.CriarConta();
                         break;
                     case "3":
                         break;

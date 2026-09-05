@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ProjetoBancario.Dados\ProjetoBancario.Dados.csproj" />
     <ProjectReference Include="..\ProjetoBancario.Dominio\ProjetoBancario.Dominio.csproj" />
+    <ProjectReference Include="..\ProjetoBancario.DTOs\ProjetoBancario.DTOs.csproj" />
   </ItemGroup>
 
 </Project>

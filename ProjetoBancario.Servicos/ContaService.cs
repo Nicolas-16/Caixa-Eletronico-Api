@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection.Metadata;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using ProjetoBancario.DTOs;
 
 /*ContaService é onde vão ficar as regras de negócio, funções de login, criação de conta, saque, depósito etc...*/
 
@@ -43,8 +44,23 @@ namespace ProjetoBancario
             return null;
         }
 
-        public static void CriarConta()
+        public static CriarContaResponse CriarConta(string nome, string cpf, string senha)
         {
+            if (ContaRepository.ValidarConta(nome,cpf) != null)
+            {
+                throw new InvalidOperationException("CPF já cadastrado");
+            }
+            var conta = new Conta
+            {
+                Nome = nome,
+                Cpf = cpf,
+                Senha = senha,
+                Saldo = 0
+            };
+
+            ContaRepository.Inserir(conta);
+            return new CriarContaResponse { Sucesso = true, Mensagem = "Conta criada com sucesso" };
+            /*
             var conta = new Conta();
 
             Console.WriteLine("Insira os dados para o cadastro da conta.");
@@ -100,7 +116,7 @@ namespace ProjetoBancario
             Console.WriteLine();
             Console.WriteLine($"Conta cadastrada com sucesso!\nNome: {conta.Nome}\nCPF: {conta.Cpf}\nConta: {conta.NumeroConta}\nSenha (não mostre a ninguém): {conta.Senha}");
             Console.WriteLine();
-            return;
+            return conta; */
         }
         public static Conta Transferir(Conta conta)
         {

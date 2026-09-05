@@ -1,11 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "d6Uj2BoVP2U=",
+  "dgSpecHash": "7twrTSSUKuo=",
   "success": true,
   "projectFilePath": "C:\\Workspace\\PrimeiraApi\\ProjetoBancario.Api\\ProjetoBancario.Api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Nicolas\\.nuget\\packages\\dapper\\2.1.79\\dapper.2.1.79.nupkg.sha512",
     "C:\\Users\\Nicolas\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.11\\microsoft.aspnetcore.openapi.10.0.11.nupkg.sha512",
+    "C:\\Users\\Nicolas\\.nuget\\packages\\microsoft.data.sqlite\\10.0.11\\microsoft.data.sqlite.10.0.11.nupkg.sha512",
+    "C:\\Users\\Nicolas\\.nuget\\packages\\microsoft.data.sqlite.core\\10.0.11\\microsoft.data.sqlite.core.10.0.11.nupkg.sha512",
     "C:\\Users\\Nicolas\\.nuget\\packages\\microsoft.openapi\\2.7.5\\microsoft.openapi.2.7.5.nupkg.sha512",
+    "C:\\Users\\Nicolas\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.12\\sqlitepclraw.bundle_e_sqlite3.2.1.12.nupkg.sha512",
+    "C:\\Users\\Nicolas\\.nuget\\packages\\sqlitepclraw.core\\2.1.12\\sqlitepclraw.core.2.1.12.nupkg.sha512",
+    "C:\\Users\\Nicolas\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.12\\sqlitepclraw.lib.e_sqlite3.2.1.12.nupkg.sha512",
+    "C:\\Users\\Nicolas\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.12\\sqlitepclraw.provider.e_sqlite3.2.1.12.nupkg.sha512",
     "C:\\Users\\Nicolas\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\10.2.3\\swashbuckle.aspnetcore.swaggerui.10.2.3.nupkg.sha512"
   ],
   "logs": []

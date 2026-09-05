@@ -15,3 +15,6 @@ C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\obj\Debug\net10.0\ProjetoBanca
 C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\obj\Debug\net10.0\refint\ProjetoBancario.Servicos.dll
 C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\obj\Debug\net10.0\ProjetoBancario.Servicos.pdb
 C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\obj\Debug\net10.0\ref\ProjetoBancario.Servicos.dll
+C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\obj\Debug\net10.0\ProjetoBancario.Servicos.sourcelink.json
+C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\bin\Debug\net10.0\ProjetoBancario.DTOs.dll
+C:\Workspace\PrimeiraApi\ProjetoBancario.Servicos\bin\Debug\net10.0\ProjetoBancario.DTOs.pdb
