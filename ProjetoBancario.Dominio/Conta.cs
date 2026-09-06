@@ -12,7 +12,7 @@ namespace ProjetoBancario
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Cpf { get; set; }
-        public string NumeroConta { get; set; }
+        public int NumeroConta { get; set; }
         public string Senha { get; set; }
         public decimal Saldo { get; set; }
 

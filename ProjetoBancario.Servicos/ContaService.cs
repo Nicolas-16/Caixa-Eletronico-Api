@@ -22,9 +22,9 @@ namespace ProjetoBancario
                 string Senha = Console.ReadLine();
                 var conta = new Conta();
 
-                conta = ContaRepository.BuscarPorNumero(numeroConta);
+                //conta = ContaRepository.BuscarPorNumero(numeroConta);
 
-                if (conta == null)
+                if (ContaRepository.ValidarNumero(numeroConta) == null)
                 {
                     Console.WriteLine("Conta não encontrada.");
                 }
@@ -46,20 +46,27 @@ namespace ProjetoBancario
 
         public static CriarContaResponse CriarConta(string nome, string cpf, string senha)
         {
-            if (ContaRepository.ValidarConta(nome,cpf) != null)
-            {
+            if (cpf.Length != 11)
+                throw new InvalidOperationException("CPF precisa ter 11 dígitos.");
+
+            if (senha.Length != 6)
+                throw new InvalidOperationException("A senha precisa ter 6 dígitos.");
+
+            if (ContaRepository.ValidarConta(nome, cpf) != null)
                 throw new InvalidOperationException("CPF já cadastrado");
-            }
+
             var conta = new Conta
             {
                 Nome = nome,
                 Cpf = cpf,
                 Senha = senha,
-                Saldo = 0
+                Saldo = 0,
+                NumeroConta = ContaRepository.ProximoNumero()
             };
 
             ContaRepository.Inserir(conta);
             return new CriarContaResponse { Sucesso = true, Mensagem = "Conta criada com sucesso" };
+        }
             /*
             var conta = new Conta();
 
@@ -116,7 +123,7 @@ namespace ProjetoBancario
             Console.WriteLine();
             Console.WriteLine($"Conta cadastrada com sucesso!\nNome: {conta.Nome}\nCPF: {conta.Cpf}\nConta: {conta.NumeroConta}\nSenha (não mostre a ninguém): {conta.Senha}");
             Console.WriteLine();
-            return conta; */
+            return conta; 
         }
         public static Conta Transferir(Conta conta)
         {
@@ -263,6 +270,6 @@ namespace ProjetoBancario
             }
             Console.WriteLine($"Saldo atual: {conta.Saldo}");
             return conta;
-        }
+        }*/
     }
 }

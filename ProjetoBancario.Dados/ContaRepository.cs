@@ -2,9 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net;
 using System.Text;
 
-/*classe ContaRepository é apenas para fazer acessos e alterações ao banco*/
+/*classe ContaRepository é apenas para fazer acessos e alterações no banco*/
 namespace ProjetoBancario
 {
     public class ContaRepository
@@ -23,13 +24,31 @@ namespace ProjetoBancario
             connection.Execute(sql, conta);
         }
 
-        public static Conta BuscarPorNumero(string numeroConta)
+        public static bool ValidarNumero(string numeroConta)//verifica se o numero da conta já existe no banco.
         {
             using var connection = DataBase.GetConnection();
             connection.Open();
 
-            string sql = @"SELECT * FROM Contas WHERE NumeroConta == @NumeroConta;";
-            return connection.QueryFirstOrDefault<Conta>(sql, new { NumeroConta = numeroConta });
+            string sql = @"SELECT COUNT(*) FROM Contas WHERE NumeroConta == @NumeroConta;";
+            var count = connection.ExecuteScalar<int>(sql, new {NumeroConta = numeroConta});
+            return count == 0;
+
+        }
+        public static int ProximoNumero()//retorna o próximo número válido de conta.
+        {
+            using var connection = DataBase.GetConnection();
+            connection.Open();
+
+            string sql = @"SELECT MAX(NumeroConta) FROM Contas;";
+            var MaxNumero = connection.ExecuteScalar<int?>(sql);
+
+            if (MaxNumero == null || MaxNumero == 0)
+            {
+                // quando o número for nulo, a primeira conta vai ser 100000.
+                return 100000;
+                
+            }
+            return MaxNumero.Value+1;
         }
         public static Conta ValidarConta(string nome, string cpf)
         {

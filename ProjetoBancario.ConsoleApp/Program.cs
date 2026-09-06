@@ -39,7 +39,14 @@ namespace ProjetoBancario
                         }
                         break;
                     case "2":
-                        //ContaService.CriarConta();
+                        Console.Write("Digite seu nome: ");
+                        string nome = Console.ReadLine();
+                        Console.Write("Digite seu cpf: ");
+                        string cpf = Console.ReadLine();
+                        Console.Write("Digite sua senha: ");
+                        string senha = Console.ReadLine();
+
+                        ContaService.CriarConta(nome, cpf, senha);
                         break;
                     case "3":
                         break;
@@ -62,16 +69,16 @@ namespace ProjetoBancario
                 switch (opcao)
                 {
                     case "1":
-                        ContaService.Transferir(conta);
+                        //ContaService.Transferir(conta);
                         break;
                     case "2":
-                        ContaService.Depositar(conta);
+                        //ContaService.Depositar(conta);
                         break;
                     case "3":
-                        ContaService.Sacar(conta);
+                        //ContaService.Sacar(conta);
                         break;
                     case "4":
-                        ContaService.Extrato(conta);
+                        //ContaService.Extrato(conta);
                         break;
                     case "5":
                         return;
