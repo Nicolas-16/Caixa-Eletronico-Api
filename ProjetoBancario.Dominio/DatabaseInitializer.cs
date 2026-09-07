@@ -32,7 +32,12 @@ namespace ProjetoBancario
                 DataHora TEXT NOT NULL,
                 FOREIGN KEY (NumeroConta) REFERENCES Contas(NumeroConta)
             ); 
-        ");
+            CREATE TABLE IF NOT EXISTS LoginAttempts (
+            Id INTEGER PRIMARY KEY,
+            LgnAtp INTEGER DEFAULT 0,
+            Locked DATETIME NULL,
+            FOREIGN KEY (Id) REFERENCES Contas(Id)
+            );");
         }
     }
 }

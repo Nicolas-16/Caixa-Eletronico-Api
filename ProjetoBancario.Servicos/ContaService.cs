@@ -12,36 +12,27 @@ namespace ProjetoBancario
 {
     public class ContaService
     {
-        public static Conta Login()
+        public static FazerLoginResponse Login(string numeroConta, string senha)
         {
-            for (int i = 0; i < 3; i++)
+            if (numeroConta.Length != 6 || senha.Length != 6)
+                throw new InvalidOperationException("A senha e/ou número da conta deve conter 6 dígitos.");
+            try
             {
-                Console.Write("Número da conta: ");
-                string numeroConta = Console.ReadLine();
-                Console.Write("senha: ");
-                string Senha = Console.ReadLine();
-                var conta = new Conta();
-
-                //conta = ContaRepository.BuscarPorNumero(numeroConta);
-
-                if (ContaRepository.ValidarNumero(numeroConta) == null)
-                {
-                    Console.WriteLine("Conta não encontrada.");
-                }
-                else
-                {
-                    if (conta.Senha == Senha)
-                    {
-                        return conta;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Senha incorreta, tente novamente.");
-                    }
-                }
+                var validacao = ContaRepository.ValidarNumero(int.Parse(numeroConta));
+                if (validacao = false)
+                    throw new InvalidOperationException("Conta não encontrada.");
             }
-            Console.WriteLine("Usuário Bloqueado!");
-            return null;
+            catch
+            {
+                throw new InvalidOperationException("O número da conta não foi digitado adequadamente.");
+            }
+            
+            var senhaBanco = ContaRepository.ValidarSenha(numeroConta);
+
+            if (senha != senhaBanco)
+                throw new InvalidOperationException("As senhas não coincidem.");
+
+            return new FazerLoginResponse { Sucesso = true, Mensagem = "Login efetuado com sucesso." };
         }
 
         public static CriarContaResponse CriarConta(string nome, string cpf, string senha)

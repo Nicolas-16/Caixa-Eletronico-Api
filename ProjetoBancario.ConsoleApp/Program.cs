@@ -31,12 +31,12 @@ namespace ProjetoBancario
                 switch (opcao)
                 {
                     case "1":
-
+                        /*
                         var ContaValida = ContaService.Login();
                         if (ContaValida != null)
                         {
                             TelaInicial(ContaValida);
-                        }
+                        }*/
                         break;
                     case "2":
                         Console.Write("Digite seu nome: ");

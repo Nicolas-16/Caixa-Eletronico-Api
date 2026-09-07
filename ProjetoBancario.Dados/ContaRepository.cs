@@ -24,7 +24,7 @@ namespace ProjetoBancario
             connection.Execute(sql, conta);
         }
 
-        public static bool ValidarNumero(string numeroConta)//verifica se o numero da conta já existe no banco.
+        public static bool ValidarNumero(int numeroConta)//verifica se o numero da conta já existe no banco.
         {
             using var connection = DataBase.GetConnection();
             connection.Open();
@@ -32,6 +32,15 @@ namespace ProjetoBancario
             string sql = @"SELECT COUNT(*) FROM Contas WHERE NumeroConta == @NumeroConta;";
             var count = connection.ExecuteScalar<int>(sql, new {NumeroConta = numeroConta});
             return count == 0;
+
+        }
+        public static string ValidarSenha(string numeroConta)
+        {
+            using var connection = DataBase.GetConnection();
+            connection.Open();
+
+            string sql = @"SELECT Senha FROM Contas WHERE NumeroConta = @NumeroConta";
+            return connection.QueryFirstOrDefault<string>(sql, new { NumeroConta = numeroConta});
 
         }
         public static int ProximoNumero()//retorna o próximo número válido de conta.
