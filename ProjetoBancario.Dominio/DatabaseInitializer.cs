@@ -20,7 +20,7 @@ namespace ProjetoBancario
                 Id INTEGER PRIMARY KEY AUTOINCREMENT,
                 Nome TEXT NOT NULL,
                 Cpf TEXT NOT NULL,
-                NumeroConta TEXT NOT NULL UNIQUE,
+                NumeroConta INTEGER NOT NULL UNIQUE,
                 Senha TEXT NOT NULL,
                 Saldo REAL NOT NULL
             );
@@ -32,7 +32,12 @@ namespace ProjetoBancario
                 DataHora TEXT NOT NULL,
                 FOREIGN KEY (NumeroConta) REFERENCES Contas(NumeroConta)
             ); 
-        ");
+            CREATE TABLE IF NOT EXISTS LoginAttempts (
+            Id INTEGER PRIMARY KEY,
+            LgnAtp INTEGER DEFAULT 0,
+            Locked DATETIME NULL,
+            FOREIGN KEY (Id) REFERENCES Contas(Id)
+            );");
         }
     }
 }

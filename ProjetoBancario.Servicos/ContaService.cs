@@ -12,54 +12,52 @@ namespace ProjetoBancario
 {
     public class ContaService
     {
-        public static Conta Login()
+        public static FazerLoginResponse Login(string numeroConta, string senha)
         {
-            for (int i = 0; i < 3; i++)
+            if (numeroConta.Length != 6 || senha.Length != 6)
+                throw new InvalidOperationException("A senha e/ou número da conta deve conter 6 dígitos.");
+            try
             {
-                Console.Write("Número da conta: ");
-                string numeroConta = Console.ReadLine();
-                Console.Write("senha: ");
-                string Senha = Console.ReadLine();
-                var conta = new Conta();
-
-                conta = ContaRepository.BuscarPorNumero(numeroConta);
-
-                if (conta == null)
-                {
-                    Console.WriteLine("Conta não encontrada.");
-                }
-                else
-                {
-                    if (conta.Senha == Senha)
-                    {
-                        return conta;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Senha incorreta, tente novamente.");
-                    }
-                }
+                var validacao = ContaRepository.ValidarNumero(int.Parse(numeroConta));
+                if (validacao = false)
+                    throw new InvalidOperationException("Conta não encontrada.");
             }
-            Console.WriteLine("Usuário Bloqueado!");
-            return null;
+            catch
+            {
+                throw new InvalidOperationException("O número da conta não foi digitado adequadamente.");
+            }
+            
+            var senhaBanco = ContaRepository.ValidarSenha(numeroConta);
+
+            if (senha != senhaBanco)
+                throw new InvalidOperationException("As senhas não coincidem.");
+
+            return new FazerLoginResponse { Sucesso = true, Mensagem = "Login efetuado com sucesso." };
         }
 
         public static CriarContaResponse CriarConta(string nome, string cpf, string senha)
         {
-            if (ContaRepository.ValidarConta(nome,cpf) != null)
-            {
+            if (cpf.Length != 11)
+                throw new InvalidOperationException("CPF precisa ter 11 dígitos.");
+
+            if (senha.Length != 6)
+                throw new InvalidOperationException("A senha precisa ter 6 dígitos.");
+
+            if (ContaRepository.ValidarConta(nome, cpf) != null)
                 throw new InvalidOperationException("CPF já cadastrado");
-            }
+
             var conta = new Conta
             {
                 Nome = nome,
                 Cpf = cpf,
                 Senha = senha,
-                Saldo = 0
+                Saldo = 0,
+                NumeroConta = ContaRepository.ProximoNumero()
             };
 
             ContaRepository.Inserir(conta);
             return new CriarContaResponse { Sucesso = true, Mensagem = "Conta criada com sucesso" };
+        }
             /*
             var conta = new Conta();
 
@@ -116,7 +114,7 @@ namespace ProjetoBancario
             Console.WriteLine();
             Console.WriteLine($"Conta cadastrada com sucesso!\nNome: {conta.Nome}\nCPF: {conta.Cpf}\nConta: {conta.NumeroConta}\nSenha (não mostre a ninguém): {conta.Senha}");
             Console.WriteLine();
-            return conta; */
+            return conta; 
         }
         public static Conta Transferir(Conta conta)
         {
@@ -263,6 +261,6 @@ namespace ProjetoBancario
             }
             Console.WriteLine($"Saldo atual: {conta.Saldo}");
             return conta;
-        }
+        }*/
     }
 }

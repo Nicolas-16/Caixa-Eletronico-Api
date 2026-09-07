@@ -3,6 +3,9 @@
 ##
 ## Get latest from `dotnet new gitignore`
 
+# banco de dados
+ProjetoBancario.Api/dados.db
+
 # dotenv files
 .env
 
