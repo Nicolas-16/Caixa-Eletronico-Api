@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+// DTOs/CriarContaResponse.cs
 namespace ProjetoBancario.DTOs;
 
-public class FazerLoginResponse
+public class GenericResponse
 {
     public bool Sucesso { get; set; }
     public string Mensagem { get; set; }

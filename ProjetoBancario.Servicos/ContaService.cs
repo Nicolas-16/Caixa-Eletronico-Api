@@ -12,39 +12,39 @@ namespace ProjetoBancario
 {
     public class ContaService
     {
-        public static FazerLoginResponse Login(string numeroConta, string senha)
+        public static GenericResponse Login(string numeroConta, string senha)
         {
             if (numeroConta.Length != 6 || senha.Length != 6)
-                throw new InvalidOperationException("A senha e/ou número da conta deve conter 6 dígitos.");
+                throw new ArgumentException("A senha e/ou número da conta deve conter 6 dígitos.");
             try
             {
                 var validacao = ContaRepository.ValidarNumero(int.Parse(numeroConta));
-                if (validacao = false)
-                    throw new InvalidOperationException("Conta não encontrada.");
+                if (validacao == false)
+                    throw new ArgumentException("Conta não encontrada.");
             }
             catch
             {
-                throw new InvalidOperationException("O número da conta não foi digitado adequadamente.");
+                throw new ArgumentException("O número da conta não foi digitado adequadamente.");
             }
             
             var senhaBanco = ContaRepository.ValidarSenha(numeroConta);
 
             if (senha != senhaBanco)
-                throw new InvalidOperationException("As senhas não coincidem.");
+                throw new ArgumentException("As senhas não coincidem.");
 
-            return new FazerLoginResponse { Sucesso = true, Mensagem = "Login efetuado com sucesso." };
+            return new GenericResponse { Sucesso = true, Mensagem = "Login efetuado com sucesso." };
         }
 
-        public static CriarContaResponse CriarConta(string nome, string cpf, string senha)
+        public static GenericResponse CriarConta(string nome, string cpf, string senha)
         {
             if (cpf.Length != 11)
-                throw new InvalidOperationException("CPF precisa ter 11 dígitos.");
+                throw new ArgumentException("CPF precisa ter 11 dígitos.");
 
             if (senha.Length != 6)
-                throw new InvalidOperationException("A senha precisa ter 6 dígitos.");
+                throw new ArgumentException("A senha precisa ter 6 dígitos.");
 
             if (ContaRepository.ValidarConta(nome, cpf) != null)
-                throw new InvalidOperationException("CPF já cadastrado");
+                throw new ArgumentException("CPF já cadastrado");
 
             var conta = new Conta
             {
@@ -56,7 +56,12 @@ namespace ProjetoBancario
             };
 
             ContaRepository.Inserir(conta);
-            return new CriarContaResponse { Sucesso = true, Mensagem = "Conta criada com sucesso" };
+            return new GenericResponse { Sucesso = true, Mensagem = "Conta criada com sucesso" };
+        }
+        public static GenericResponse Deposito(double valor)
+        {
+
+            return new GenericResponse { Sucesso = true, Mensagem = "Deposito realizado."};
         }
             /*
             var conta = new Conta();
