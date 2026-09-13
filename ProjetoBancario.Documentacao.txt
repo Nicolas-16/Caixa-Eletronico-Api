@@ -29,18 +29,20 @@
 
 ### DatabaseInitializer.cs
 - Inicializa o banco de dados criando as tabelas necessárias
-- Cria as tabelas Contas e Transacoes se não existirem
+- Cria as tabelas Contas, Transacoes e tentativas de login, se não existirem
 
 ### ContaRepository.cs
 - Responsável por operações de acesso a dados de contas
 - Métodos:
   - Inserir: Insere uma nova conta no banco
-  - BuscarPorNumero: Busca uma conta pelo número
   - CadastrarConta: Cadastra uma nova conta
   - SetSaldo: Atualiza o saldo de uma conta
   - RegTrans: Registra uma transação
   - GetSaldo: Recupera o saldo de uma conta
   - BuscarExtrato: Busca o extrato de uma conta
+  - ValidarSenha: Retorna a senha da conta
+  - ProximoNumero: retorna o próximo número de conta válido
+  - ValidarNumero: verifica se o numero da conta já existe no banco
 
 ## 3. Camada de Serviço
 
@@ -58,11 +60,19 @@
 
 ### DTOs
 - CriarContaRequest: DTO para requisição de criação de conta
-- CriarContaResponse: DTO para resposta de criação de conta
+- DepositoRequest:DTO recebe valor para deposito
+- FazerLoginRequest: DTO para login recebe número de conta e senha
+- GenericResponse: DTO para respostas genericas
 
 ### UsuariosController.cs
 - Controlador da API para endpoints relacionados a usuários
 - Gerencia requisições HTTP para operações de conta
+
+### LoginController
+- Controlador de API para endpoint recebendo o usuário e senha do DTO, validando, e encaminhando para o método login do ContaService.
+
+### DepositoController
+- Controlador de API para endpoint de deposit, recebe o DTO de deposito, valida, e encaminhar para o método Deposito do ContaService.
 
 ## 5. Arquitetura
 - O projeto segue um padrão de arquitetura de camadas:
@@ -87,5 +97,4 @@
 - O projeto foi convertido de um console app para uma API
 - A camada de API ainda está em desenvolvimento
 - A camada de serviço contém a lógica principal do sistema
-- O banco de dados é gerenciado via SQLite
-- A documentação foi gerada com base no código-fonte disponível
+- O banco de dados é gerenciado via SQLite com Dapper.
