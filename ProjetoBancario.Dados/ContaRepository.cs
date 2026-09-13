@@ -31,10 +31,10 @@ namespace ProjetoBancario
 
             string sql = @"SELECT COUNT(*) FROM Contas WHERE NumeroConta == @NumeroConta;";
             var count = connection.ExecuteScalar<int>(sql, new {NumeroConta = numeroConta});
-            return count == 0;
+            return count > 0;
 
         }
-        public static string ValidarSenha(string numeroConta)
+        public static string ValidarSenha(int numeroConta)
         {
             using var connection = DataBase.GetConnection();
             connection.Open();
@@ -76,15 +76,14 @@ namespace ProjetoBancario
             connection.Execute(sql, conta);
 
         }
-        public static void SetSaldo(Conta conta)
+        public static string SetSaldo(double valor, string numeroConta)
         {
             using var connection = DataBase.GetConnection();
             connection.Open();
 
             string sql = @"UPDATE Contas SET Saldo = @Saldo WHERE NumeroConta = @NumeroConta;";
-            connection.Execute(sql, conta);
-
-
+            connection.Execute(sql, new { Saldo= valor, NumeroConta= numeroConta});
+            return "depósito realizado!";
         }
         public static void RegTrans(Transacao transacao)//ainda não fuciona, está em implementação.
         {
@@ -95,13 +94,13 @@ namespace ProjetoBancario
             connection.Execute(sql, transacao);
         }
 
-        public static Conta GetSaldo(Conta conta)
+        public static double GetSaldo(string numeroConta)
         {
             using var connection = DataBase.GetConnection();
             connection.Open();
 
-            string sql = @"SELECT * FROM Contas WHERE NumeroConta == @NumeroConta;";
-            return connection.QueryFirstOrDefault<Conta>(sql, conta);
+            string sql = @"SELECT Saldo FROM Contas WHERE NumeroConta == @NumeroConta;";
+            return connection.ExecuteScalar<double>(sql, new { NumeroConta= numeroConta});
         }
         public static List<Transacao> BuscarExtrato(string numeroConta)
         {

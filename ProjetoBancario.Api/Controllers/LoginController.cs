@@ -9,6 +9,12 @@ namespace ProjetoBancario.Api;
 [Route("api/[Controller]")]
 public class LoginController : ControllerBase
 {
+    private readonly ContaService _contaService;
+    public LoginController(ContaService contaService)
+    {
+        _contaService = contaService;
+    }
+
     [HttpPost("login")]
 
     public IActionResult FazerLogin([FromBody] FazerLoginRequest request)
@@ -24,7 +30,7 @@ public class LoginController : ControllerBase
 
         try
         {
-            var response = ContaService.Login(request.NumeroConta, request.SenhaHash);
+            LoginResponse response = _contaService.Login(request.NumeroConta, request.SenhaHash);
             return Ok(response);
         }
         catch (Exception ex)

@@ -1,10 +1,17 @@
-﻿using System;
-using System.Globalization;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using ProjetoBancario.DTOs;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IdentityModel.Tokens.Jwt;
 using System.Reflection.Metadata;
+using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using ProjetoBancario.DTOs;
 
 /*ContaService é onde vão ficar as regras de negócio, funções de login, criação de conta, saque, depósito etc...*/
 
@@ -12,30 +19,52 @@ namespace ProjetoBancario
 {
     public class ContaService
     {
-        public static GenericResponse Login(string numeroConta, string senha)
+        private readonly IConfiguration _configuration;
+        public ContaService(IConfiguration configuration)
         {
-            if (numeroConta.Length != 6 || senha.Length != 6)
-                throw new ArgumentException("A senha e/ou número da conta deve conter 6 dígitos.");
-            try
-            {
-                var validacao = ContaRepository.ValidarNumero(int.Parse(numeroConta));
-                if (validacao == false)
-                    throw new ArgumentException("Conta não encontrada.");
-            }
-            catch
-            {
-                throw new ArgumentException("O número da conta não foi digitado adequadamente.");
-            }
+            _configuration = configuration;
+        }
+
+        public LoginResponse Login(string numeroConta, string senha)
+        {
+
+            if (!int.TryParse(numeroConta, out var numeroContaInteiro))
+                throw new ArgumentException("O número da conta deve conter apenas dígitos.");
+
+            if (!ContaRepository.ValidarNumero(numeroContaInteiro))
+                throw new ArgumentException("Conta não encontrada.");
             
-            var senhaBanco = ContaRepository.ValidarSenha(numeroConta);
+            var senhaBanco = ContaRepository.ValidarSenha(numeroContaInteiro);
 
             if (senha != senhaBanco)
                 throw new ArgumentException("As senhas não coincidem.");
 
-            return new GenericResponse { Sucesso = true, Mensagem = "Login efetuado com sucesso." };
+            var token = GerarToken(numeroConta);
+
+            return new LoginResponse { 
+                Sucesso = true, 
+                Mensagem = "Login bem-sucedido", 
+                NumeroConta = numeroConta, 
+                Token = token 
+            };
+        }
+        public string GerarToken(string numeroConta)
+        {
+            var chave = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]) );
+            var credenciais = new SigningCredentials(chave, SecurityAlgorithms.HmacSha256);
+            var claims = new[] {new Claim(ClaimTypes.NameIdentifier, numeroConta)};
+
+            var token = new JwtSecurityToken(
+                claims: claims,
+                expires: DateTime.UtcNow.AddMinutes(10),
+                signingCredentials: credenciais
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+
         }
 
-        public static GenericResponse CriarConta(string nome, string cpf, string senha)
+        public static CriarContaResponse CriarConta(string nome, string cpf, string senha)
         {
             if (cpf.Length != 11)
                 throw new ArgumentException("CPF precisa ter 11 dígitos.");
@@ -56,12 +85,27 @@ namespace ProjetoBancario
             };
 
             ContaRepository.Inserir(conta);
-            return new GenericResponse { Sucesso = true, Mensagem = "Conta criada com sucesso" };
-        }
-        public static GenericResponse Deposito(double valor)
-        {
 
-            return new GenericResponse { Sucesso = true, Mensagem = "Deposito realizado."};
+            return new CriarContaResponse { 
+                Sucesso = true, 
+                Mensagem = "Conta criada com sucesso", 
+                numeroConta = conta.NumeroConta.ToString() 
+            };
+        }
+        public GenericResponse Deposito(double valor, string numeroConta)
+        {
+            double saldo = ContaRepository.GetSaldo(numeroConta);
+            saldo += valor;
+            try
+            {
+                var response = ContaRepository.SetSaldo(valor, numeroConta);
+                return new GenericResponse { Sucesso = true, Mensagem = response };
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Erro interno:", ex);
+            }
+            
         }
             /*
             var conta = new Conta();
