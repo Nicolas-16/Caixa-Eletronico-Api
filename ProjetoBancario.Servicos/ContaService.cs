@@ -1,16 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Identity.Core;
 using Microsoft.IdentityModel.Tokens;
 using ProjetoBancario.DTOs;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
-using System.Reflection.Metadata;
 using System.Security.Claims;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 /*ContaService é onde vão ficar as regras de negócio, funções de login, criação de conta, saque, depósito etc...*/
@@ -20,8 +15,10 @@ namespace ProjetoBancario
     public class ContaService
     {
         private readonly IConfiguration _configuration;
-        public ContaService(IConfiguration configuration)
+        private readonly ContaRepository _contaRepository;
+        public ContaService(ContaRepository contaRepository, IConfiguration configuration)
         {
+            _contaRepository = contaRepository;
             _configuration = configuration;
         }
 
@@ -36,8 +33,10 @@ namespace ProjetoBancario
             
             var senhaBanco = ContaRepository.ValidarSenha(numeroContaInteiro);
 
-            if (senha != senhaBanco)
-                throw new ArgumentException("As senhas não coincidem.");
+            var passwordHasher = new PasswordHasher<Conta>();
+            var validacao = passwordHasher.VerifyHashedPassword(null!, senhaBanco, senha);
+            if (validacao == PasswordVerificationResult.Failed)
+                throw new ArgumentException("Número da conta ou senha inválidos.");
 
             var token = GerarToken(numeroConta);
 
@@ -75,11 +74,13 @@ namespace ProjetoBancario
             if (ContaRepository.ValidarConta(nome, cpf) != null)
                 throw new ArgumentException("CPF já cadastrado");
 
+            var passwordHasher = new PasswordHasher<Conta>();
+
             var conta = new Conta
             {
                 Nome = nome,
                 Cpf = cpf,
-                Senha = senha,
+                Senha = passwordHasher.HashPassword(null!, senha),
                 Saldo = 0,
                 NumeroConta = ContaRepository.ProximoNumero()
             };
@@ -92,20 +93,20 @@ namespace ProjetoBancario
                 numeroConta = conta.NumeroConta.ToString() 
             };
         }
-        public GenericResponse Deposito(double valor, string numeroConta)
+        public GenericResponse Deposito(decimal valor, string numeroConta)
         {
-            double saldo = ContaRepository.GetSaldo(numeroConta);
+            decimal saldo = ContaRepository.GetSaldo(numeroConta);
             saldo += valor;
-            try
-            {
-                var response = ContaRepository.SetSaldo(valor, numeroConta);
-                return new GenericResponse { Sucesso = true, Mensagem = response };
-            }
-            catch(Exception ex)
-            {
-                throw new Exception("Erro interno:", ex);
-            }
+
+            ContaRepository.SetSaldo(saldo, numeroConta);
+            return new GenericResponse { Sucesso = true, Mensagem = "Depósito realizado!" };
             
+        }
+
+        public GenericResponse Transferencia(string contaOrigem, string contaDestino, decimal valor)
+        {
+            _contaRepository.Transferir(contaOrigem, contaDestino, valor);
+            return new GenericResponse { Sucesso = true, Mensagem = "Transferência realizada!" };
         }
             /*
             var conta = new Conta();

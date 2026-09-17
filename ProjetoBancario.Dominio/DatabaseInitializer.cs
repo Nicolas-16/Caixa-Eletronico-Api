@@ -22,7 +22,7 @@ namespace ProjetoBancario
                 Cpf TEXT NOT NULL,
                 NumeroConta INTEGER NOT NULL UNIQUE,
                 Senha TEXT NOT NULL,
-                Saldo REAL NOT NULL
+                Saldo INTEGER NOT NULL
             );
             CREATE TABLE IF NOT EXISTS Transacoes (
                 Id INTEGER PRIMARY KEY AUTOINCREMENT,

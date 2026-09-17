@@ -4,7 +4,8 @@ using System.Text;
 
 namespace ProjetoBancario.DTOs;
 
-public class DepositoRequest
+public class TransferenciaRequest
 {
     public decimal Valor { get; set; }
+    public string TransfConta { get; set; }
 }

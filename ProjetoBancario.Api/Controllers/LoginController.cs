@@ -15,7 +15,7 @@ public class LoginController : ControllerBase
         _contaService = contaService;
     }
 
-    [HttpPost("login")]
+    [HttpPost]
 
     public IActionResult FazerLogin([FromBody] FazerLoginRequest request)
     {
@@ -23,14 +23,14 @@ public class LoginController : ControllerBase
             return BadRequest("Dados da requisição são nulos");
 
         if (string.IsNullOrEmpty(request.NumeroConta) ||
-                string.IsNullOrEmpty(request.SenhaHash))
+                string.IsNullOrEmpty(request.Senha))
         {
             return BadRequest("Nome, CPF e senha são obrigatórios");
         }
 
         try
         {
-            LoginResponse response = _contaService.Login(request.NumeroConta, request.SenhaHash);
+            LoginResponse response = _contaService.Login(request.NumeroConta, request.Senha);
             return Ok(response);
         }
         catch (Exception ex)

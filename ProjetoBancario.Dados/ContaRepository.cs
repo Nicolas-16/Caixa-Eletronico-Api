@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
 using System.Text;
+using System.Transactions;
 
 /*classe ContaRepository é apenas para fazer acessos e alterações no banco*/
 namespace ProjetoBancario
@@ -76,14 +77,15 @@ namespace ProjetoBancario
             connection.Execute(sql, conta);
 
         }
-        public static string SetSaldo(double valor, string numeroConta)
+        public static void SetSaldo(decimal valorDecimal, string numeroConta)
         {
             using var connection = DataBase.GetConnection();
             connection.Open();
 
+            long valor = decimal.ToInt64(valorDecimal * 100m);//convertendo pra guardar como inteiro no banco.
+
             string sql = @"UPDATE Contas SET Saldo = @Saldo WHERE NumeroConta = @NumeroConta;";
             connection.Execute(sql, new { Saldo= valor, NumeroConta= numeroConta});
-            return "depósito realizado!";
         }
         public static void RegTrans(Transacao transacao)//ainda não fuciona, está em implementação.
         {
@@ -94,13 +96,37 @@ namespace ProjetoBancario
             connection.Execute(sql, transacao);
         }
 
-        public static double GetSaldo(string numeroConta)
+        public static decimal GetSaldo(string numeroConta)
         {
             using var connection = DataBase.GetConnection();
             connection.Open();
 
             string sql = @"SELECT Saldo FROM Contas WHERE NumeroConta == @NumeroConta;";
-            return connection.ExecuteScalar<double>(sql, new { NumeroConta= numeroConta});
+            long valor = connection.ExecuteScalar<long>(sql, new { NumeroConta= numeroConta});
+            return valor / 100m;
+        }
+        public void Transferir(string contaOrigem, string contaDestino, decimal valorDecimal)
+        {
+            using var connection = DataBase.GetConnection();
+            connection.Open();
+
+            long valor = decimal.ToInt64(valorDecimal * 100);//convertendo pra guardar como inteiro no banco.
+
+            //realizando a atualização das contas juntas pra garantir o princípio da atomicidade.
+            using var transaction = connection.BeginTransaction();
+            try 
+            {
+                connection.Execute(@"UPDATE Contas SET Saldo = Saldo - @Valor WHERE NumeroConta= @ContaOrigem;", 
+                    new { Valor = valor, ContaOrigem= contaOrigem});
+                connection.Execute(@"UPDATE Contas SET Saldo = Saldo + @Valor WHERE NumeroConta= @ContaDestino;", 
+                    new {Valor= valor, ContaDestino= contaDestino});
+            }
+            catch
+            {
+                transaction.Rollback();
+                throw;
+            }
+            transaction.Commit();
         }
         public static List<Transacao> BuscarExtrato(string numeroConta)
         {
