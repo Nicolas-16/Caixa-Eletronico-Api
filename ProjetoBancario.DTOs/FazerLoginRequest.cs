@@ -7,5 +7,5 @@ namespace ProjetoBancario.DTOs;
 public class FazerLoginRequest
 {
     public string NumeroConta { get; set; }
-    public string SenhaHash { get; set; }
+    public string Senha { get; set; }
 }

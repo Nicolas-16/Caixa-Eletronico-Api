@@ -14,14 +14,14 @@ public class DepositoController : ControllerBase
         _contaService = contaService;
     }
     [Authorize]
-    [HttpPost("Deposito")]
+    [HttpPost]
     public IActionResult Deposito([FromBody] DepositoRequest request)
     {
         var numeroConta = User.FindFirstValue(ClaimTypes.NameIdentifier);
         if (numeroConta == null)
             return BadRequest("O número da conta não pode ser nulo.");
 
-        if (request.Valor == null || request.Valor <0)
+        if (request.Valor == null || request.Valor <=0)
             return BadRequest("O valor do depósito não pode ser nulo ou negativo.");
 
         try
