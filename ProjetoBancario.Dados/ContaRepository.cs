@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Data;
 using System.Net;
 using System.Text;
 using System.Transactions;
@@ -77,26 +78,71 @@ namespace ProjetoBancario
             connection.Execute(sql, conta);
 
         }
-        public static void SetSaldo(decimal valorDecimal, string numeroConta)
+        public void SetSaldo(decimal valorDecimal, string numeroConta)
         {
             using var connection = DataBase.GetConnection();
             connection.Open();
 
-            long valor = decimal.ToInt64(valorDecimal * 100m);//convertendo pra guardar como inteiro no banco.
+            var novoSaldoEmCentavos = decimal.ToInt64(valorDecimal * 100m);
+            using var transaction = connection.BeginTransaction();
 
-            string sql = @"UPDATE Contas SET Saldo = @Saldo WHERE NumeroConta = @NumeroConta;";
-            connection.Execute(sql, new { Saldo= valor, NumeroConta= numeroConta});
+            try
+            {
+                const string saldoAtualSql = "SELECT Saldo FROM Contas WHERE NumeroConta = @NumeroConta;";
+                var saldoAnteriorEmCentavos = connection.ExecuteScalar<long>(
+                    saldoAtualSql,
+                    new { NumeroConta = numeroConta },
+                    transaction
+                );
+
+                const string atualizarSaldoSql = "UPDATE Contas SET Saldo = @Saldo WHERE NumeroConta = @NumeroConta;";
+                var contasAtualizadas = connection.Execute(
+                    atualizarSaldoSql,
+                    new { Saldo = novoSaldoEmCentavos, NumeroConta = numeroConta },
+                    transaction
+                );
+
+                if (contasAtualizadas != 1)
+                    throw new ArgumentException("Conta não encontrada.");
+
+                var diferencaEmCentavos = novoSaldoEmCentavos - saldoAnteriorEmCentavos;
+
+                if (diferencaEmCentavos > 0)
+                    RegTrans(connection, transaction, numeroConta, "Entrada", diferencaEmCentavos / 100m);
+                else if (diferencaEmCentavos < 0)
+                    RegTrans(connection, transaction, numeroConta, "Saída", -diferencaEmCentavos / 100m);
+
+                transaction.Commit();
+            }
+            catch
+            {
+                transaction.Rollback();
+                throw;
+            }
         }
-        public static void RegTrans(Transacao transacao)//ainda não fuciona, está em implementação.
+
+        private static void RegTrans(
+            IDbConnection connection,
+            IDbTransaction transaction,
+            string numeroConta,
+            string tipo,
+            decimal valor)
         {
-            using var connection = DataBase.GetConnection();
-            connection.Open();
+            const string sql = """
+                INSERT INTO Transacoes (NumeroConta, Tipo, Valor, DataHora)
+                VALUES (@NumeroConta, @Tipo, @Valor, @DataHora);
+                """;
 
-            string sql = @"INSERT INTO Transacoes (NumeroConta, Tipo, Valor, DataHora) VALUES (@NumeroConta, @Tipo, @Valor, @DataHora );";
-            connection.Execute(sql, transacao);
+            connection.Execute(sql, new
+            {
+                NumeroConta = numeroConta,
+                Tipo = tipo,
+                Valor = valor,
+                DataHora = DateTime.UtcNow
+            }, transaction);
         }
 
-        public static decimal GetSaldo(string numeroConta)
+        public decimal GetSaldo(string numeroConta)
         {
             using var connection = DataBase.GetConnection();
             connection.Open();
@@ -107,34 +153,62 @@ namespace ProjetoBancario
         }
         public void Transferir(string contaOrigem, string contaDestino, decimal valorDecimal)
         {
+            if (contaOrigem == contaDestino)
+                throw new ArgumentException("A conta de destino deve ser diferente da conta de origem.");
+
             using var connection = DataBase.GetConnection();
             connection.Open();
 
-            long valor = decimal.ToInt64(valorDecimal * 100);//convertendo pra guardar como inteiro no banco.
+            long valor = decimal.ToInt64(valorDecimal * 100m);//convertendo pra guardar como inteiro no banco.
 
             //realizando a atualização das contas juntas pra garantir o princípio da atomicidade.
             using var transaction = connection.BeginTransaction();
             try 
             {
-                connection.Execute(@"UPDATE Contas SET Saldo = Saldo - @Valor WHERE NumeroConta= @ContaOrigem;", 
-                    new { Valor = valor, ContaOrigem= contaOrigem});
-                connection.Execute(@"UPDATE Contas SET Saldo = Saldo + @Valor WHERE NumeroConta= @ContaDestino;", 
-                    new {Valor= valor, ContaDestino= contaDestino});
+                var origemAtualizada = connection.Execute(
+                    """
+                    UPDATE Contas
+                    SET Saldo = Saldo - @Valor
+                    WHERE NumeroConta = @ContaOrigem AND Saldo >= @Valor;
+                    """,
+                    new { Valor = valor, ContaOrigem = contaOrigem },
+                    transaction
+                );
+
+                if (origemAtualizada != 1)
+                    throw new ArgumentException("Conta de origem não encontrada ou saldo insuficiente.");
+
+                var destinoAtualizado = connection.Execute(
+                    """
+                    UPDATE Contas
+                    SET Saldo = Saldo + @Valor
+                    WHERE NumeroConta = @ContaDestino;
+                    """,
+                    new { Valor = valor, ContaDestino = contaDestino },
+                    transaction
+                );
+
+                if (destinoAtualizado != 1)
+                    throw new ArgumentException("Conta de destino não encontrada.");
+
+                RegTrans(connection, transaction, contaOrigem, "Saída", valorDecimal);
+                RegTrans(connection, transaction, contaDestino, "Entrada", valorDecimal);
+
+                transaction.Commit();
             }
             catch
             {
                 transaction.Rollback();
                 throw;
             }
-            transaction.Commit();
         }
-        public static List<Transacao> BuscarExtrato(string numeroConta)
+        public List<Transacao> BuscarExtrato(string conta)
         {
             using var connection = DataBase.GetConnection();
             connection.Open();
 
-            string sql = @"SELECT Id, NumeroConta, Tipo, Valor, DataHora FROM Transacoes WHERE NumeroConta = @NumeroConta AND DataHora >= datetime('now', '-30 days') ORDER BY DataHora DESC;";
-            return connection.Query<Transacao>(sql, new { NumeroConta = numeroConta }).ToList();
+            string sql = @"SELECT Id, NumeroConta, Tipo, Valor, DataHora FROM Transacoes WHERE NumeroConta = @Conta AND DataHora >= datetime('now', '-30 days') ORDER BY DataHora DESC;";
+            return connection.Query<Transacao>(sql, new { Conta = conta }).ToList();
         }
     }
 }

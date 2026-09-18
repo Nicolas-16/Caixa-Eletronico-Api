@@ -8,7 +8,7 @@ namespace ProjetoBancario
     {
         public int Id { get; set; }
         public string NumeroConta { get; set; }
-        public string Tipo { get; set; } // "Deposito" ou "Saque"
+        public string Tipo { get; set; } // "Entrada" ou "Saída"
         public decimal Valor { get; set; }
         public DateTime DataHora { get; set; }
 
