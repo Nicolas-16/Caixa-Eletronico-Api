@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Identity.Core;
+using Elekto.BrazilianDocuments;
 using Microsoft.IdentityModel.Tokens;
 using ProjetoBancario.DTOs;
 using System;
@@ -65,8 +65,10 @@ namespace ProjetoBancario
 
         public static CriarContaResponse CriarConta(string nome, string cpf, string senha)
         {
-            if (cpf.Length != 11)
-                throw new ArgumentException("CPF precisa ter 11 dígitos.");
+            var Cpf = FormatarCpf(cpf);
+
+            if (Cpf== "00000000000")
+                throw new ArgumentException("Cpf inválido");
 
             if (senha.Length != 6)
                 throw new ArgumentException("A senha precisa ter 6 dígitos.");
@@ -79,7 +81,7 @@ namespace ProjetoBancario
             var conta = new Conta
             {
                 Nome = nome,
-                Cpf = cpf,
+                Cpf = Cpf,
                 Senha = passwordHasher.HashPassword(null!, senha),
                 Saldo = 0,
                 NumeroConta = ContaRepository.ProximoNumero()
@@ -92,6 +94,13 @@ namespace ProjetoBancario
                 Mensagem = "Conta criada com sucesso", 
                 numeroConta = conta.NumeroConta.ToString() 
             };
+        }
+        public static string FormatarCpf(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input) || !Cpf.IsValid(input))
+                throw new ArgumentException("Cpf inválido");
+            var cpf = Cpf.Parse(input).ToString("B");
+            return cpf;
         }
         public GenericResponse Deposito(decimal valor, string numeroConta)
         {

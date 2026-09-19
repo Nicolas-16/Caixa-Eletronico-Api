@@ -43,6 +43,7 @@
   - ValidarSenha: Retorna a senha da conta
   - ProximoNumero: retorna o próximo número de conta válido
   - ValidarNumero: verifica se o numero da conta já existe no banco
+  - Transferir: realiza a transferencia entre contas
 
 ## 3. Camada de Serviço
 
@@ -60,9 +61,15 @@
 
 ### DTOs
 - CriarContaRequest: DTO para requisição de criação de conta
+- CriarContaResponse: DTO retorna número da conta cadastrada
 - DepositoRequest:DTO recebe valor para deposito
+- ExtratoRequest: DTO recebe numero da conta pelo JWT
+- ExtratoResponse: DTO devolve saldo e uma lista de transações
 - FazerLoginRequest: DTO para login recebe número de conta e senha
+- LoginResponse: DTO retorna o token de acesso
 - GenericResponse: DTO para respostas genericas
+- SaqueRequest: DTO recebe valor
+- TransferenciaRequest: DTO recebe valor, conta de destino e a conta origem pelo JWT
 
 ### UsuariosController.cs
 - Controlador da API para endpoints relacionados a usuários
@@ -74,6 +81,16 @@
 ### DepositoController
 - Controlador de API para endpoint de deposit, recebe o DTO de deposito, valida, e encaminhar para o método Deposito do ContaService.
 
+### ExtratoController
+ - Controlador de API para endpoint de extrato, recebe DTO ExtratoRequest, bem como o token com a conta origem, valida e encaminha para o método Extrato do ContaService.
+
+### SaqueController
+- Controlador de API para endopoint de extrato, recebe o DTO SaqueRequest, bem como o token com a conta origem, valida e encaminha para o método Saque do ContaService.
+
+### TransferenciaController
+- Controlador de API para endopoint de transferencia, recebe o DTO TransferenciaRequest, bem como o token com a conta origem, valida e encaminha para o método Transferencia do ContaService.
+
+
 ## 5. Arquitetura
 - O projeto segue um padrão de arquitetura de camadas:
   1. Camada de Domínio (Modelo)
@@ -81,6 +98,7 @@
   3. Camada de Serviço (Business Logic)
   4. Camada de API (Controllers)
 - Utiliza SQLite como banco de dados
+- Utiliza Dapper como micro ORM
 - A camada de serviço contém a lógica de regras de negócio
 - A camada de API expõe as funcionalidades via endpoints HTTP
 
@@ -95,6 +113,5 @@
 
 ## 7. Considerações
 - O projeto foi convertido de um console app para uma API
-- A camada de API ainda está em desenvolvimento
 - A camada de serviço contém a lógica principal do sistema
 - O banco de dados é gerenciado via SQLite com Dapper.

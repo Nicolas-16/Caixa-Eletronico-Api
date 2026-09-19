@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Text;
 using System.Linq;
 
+//DESCONTINUADO, NÃO FUNCIONA.
+
 /*A classe Program vai conter os menus de acesso do usuário*/
 
 namespace ProjetoBancario
